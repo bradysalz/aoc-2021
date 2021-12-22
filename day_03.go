@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func dayThreePartOne() int {
 	var data string = "input/day_03.txt"
 	vals, err := readFileToStringArray(data)
@@ -39,4 +43,98 @@ func dayThreePartOne() int {
 
 	epsilon = calculateInverseValue(gamma, numBits)
 	return gamma * epsilon
+}
+
+func dayThreePartTwo() int {
+	var data string = "input/day_03.txt"
+	maxLength, err := getLengthOfInputWord(data)
+	if err != nil {
+		panic(err)
+	}
+
+	words, err := readFileToNumericArray(data)
+	if err != nil {
+		panic(err)
+	}
+
+	oxygen := calculateOxygenRating(words, maxLength)
+	c02 := calculateC02Rating(words, maxLength)
+	fmt.Println(oxygen, c02)
+	return oxygen * c02
+
+}
+
+func calculateOxygenRating(words []int, maxLength int) int {
+	// Loop over each bit
+	for b := maxLength - 1; b > -1; b-- {
+		if len(words) <= 1 {
+			break
+		}
+
+		// Find the most common bit
+		bitCounter := 0
+		for _, word := range words {
+			bitFlag := word & (1 << b)
+			if bitFlag > 0 {
+				bitCounter += 1
+			} else {
+				bitCounter -= 1
+			}
+		}
+
+		// Filter the array
+		var temp []int
+		for _, word := range words {
+			if bitCounter >= 0 {
+				if hasBitSet(word, b) {
+					temp = append(temp, word)
+				}
+			} else {
+				if !hasBitSet(word, b) {
+					temp = append(temp, word)
+				}
+			}
+		}
+		words = temp
+	}
+	return words[0]
+}
+
+// too lazy to make this an easy refactor
+func calculateC02Rating(words []int, maxLength int) int {
+	// Loop over each bit
+	for b := maxLength - 1; b > -1; b-- {
+		if len(words) <= 1 {
+			break
+		}
+
+		// Find the most common bit
+		bitCounter := 0
+		for _, word := range words {
+			bitFlag := word & (1 << b)
+			if bitFlag > 0 {
+				bitCounter += 1
+			} else {
+				bitCounter -= 1
+			}
+		}
+
+		// Filter the array
+		var temp []int
+		for _, word := range words {
+			if bitCounter >= 0 {
+				if !hasBitSet(word, b) {
+					temp = append(temp, word)
+				}
+			} else {
+				if hasBitSet(word, b) {
+					temp = append(temp, word)
+				}
+			}
+		}
+		fmt.Println(words)
+		fmt.Println(temp)
+		words = temp
+	}
+	return words[0]
 }
