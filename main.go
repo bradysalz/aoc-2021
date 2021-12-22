@@ -7,4 +7,5 @@ func main() {
 	fmt.Println("Day 1 Part 2:", dayOnePartTwo())
 	fmt.Println("Day 2 Part 1:", dayTwoPartOne())
 	fmt.Println("Day 2 Part 2:", dayTwoPartTwo())
+	fmt.Println("Day 3 Part 1:", dayThreePartOne())
 }

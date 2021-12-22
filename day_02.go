@@ -15,7 +15,7 @@ const (
 )
 
 func dayTwoPartOne() int {
-	file, err := os.Open("input/day2.txt")
+	file, err := os.Open("input/day_02.txt")
 	check(err)
 	defer file.Close()
 
@@ -43,7 +43,7 @@ func dayTwoPartOne() int {
 }
 
 func dayTwoPartTwo() int {
-	file, err := os.Open("input/day2.txt")
+	file, err := os.Open("input/day_02.txt")
 	check(err)
 	defer file.Close()
 

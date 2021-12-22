@@ -6,15 +6,8 @@ import (
 	"strconv"
 )
 
-// Files error out a lot, so make an error handler warpper
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func dayOnePartOne() uint {
-	file, err := os.Open("input/day1.txt")
+	file, err := os.Open("input/day_01.txt")
 	check(err)
 	defer file.Close()
 
@@ -43,7 +36,7 @@ func dayOnePartOne() uint {
 }
 
 func dayOnePartTwo() uint {
-	file, err := os.Open("input/day1.txt")
+	file, err := os.Open("input/day_01.txt")
 	check(err)
 	defer file.Close()
 
