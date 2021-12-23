@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func dayThreePartOne() int {
 	var data string = "input/day_03.txt"
 	vals, err := readFileToStringArray(data)
@@ -59,7 +55,6 @@ func dayThreePartTwo() int {
 
 	oxygen := calculateOxygenRating(words, maxLength)
 	c02 := calculateC02Rating(words, maxLength)
-	fmt.Println(oxygen, c02)
 	return oxygen * c02
 
 }
@@ -132,8 +127,6 @@ func calculateC02Rating(words []int, maxLength int) int {
 				}
 			}
 		}
-		fmt.Println(words)
-		fmt.Println(temp)
 		words = temp
 	}
 	return words[0]
