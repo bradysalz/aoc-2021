@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"log"
 	"os"
 	"strconv"
 )
@@ -80,4 +81,22 @@ func removeFromSlice(s []int, idx int) []int {
 func hasBitSet(n int, pos int) bool {
 	val := n & (1 << pos)
 	return (val > 0)
+}
+
+// Get the maximum value and where it (first) occurs
+func getMaxValueAndIndex(arr []int) (int, int) {
+	if len(arr) == 0 {
+		log.Fatal("no maximum of empty array")
+	}
+
+	maxIdx := 0
+	maxValue := arr[maxIdx]
+
+	for a := range arr {
+		if arr[a] > maxValue {
+			maxValue = arr[a]
+			maxIdx = a
+		}
+	}
+	return maxValue, maxIdx
 }
