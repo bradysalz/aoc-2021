@@ -2,9 +2,11 @@ package main
 
 import (
 	"bufio"
+	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 // Files error out a lot, so make an error handler warpper
@@ -12,6 +14,26 @@ func check(e error) {
 	if e != nil {
 		panic(e)
 	}
+}
+
+func readFileToIntArray(path string) [][]int {
+	lines, err := ioutil.ReadFile(path)
+	if err != nil {
+		panic(err)
+	}
+
+	retVal := make([][]int, 0)
+	for l, line := range strings.Split(string(lines), "\n") {
+		retVal = append(retVal, make([]int, 0))
+		for _, word := range strings.Split(line, "") {
+			val, err := strconv.ParseInt(word, 0, 0)
+			if err != nil {
+				panic(err)
+			}
+			retVal[l] = append(retVal[l], int(val))
+		}
+	}
+	return retVal
 }
 
 func readFileToStringArray(path string) ([]string, error) {
