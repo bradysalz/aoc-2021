@@ -77,6 +77,78 @@ func removeFromSlice(s []int, idx int) []int {
 	return s[:len(s)-1]
 }
 
+func removeFromStringSlice(s []string, valToRemove string) []string {
+	for i, val := range s {
+		if val == valToRemove {
+			// Swap-n-drop
+			s[i] = s[len(s)-1]
+			return s[:len(s)-1]
+		}
+	}
+	log.Fatal("Could not find the value in slice")
+	return s
+}
+
+// Return true if a.sort == b.sort, else false
+func checkUnorderedStringEqual(a string, b string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+
+	return subStringInString(a, b)
+}
+
+// Return true if a \in b, else false
+func subStringInString(a string, b string) bool {
+	exists := make(map[rune]bool)
+	for _, value := range b {
+		exists[value] = true
+	}
+	for _, value := range a {
+		if !exists[value] {
+			return false
+		}
+	}
+	return true
+}
+
+// Return a | b for strings
+func stringUnion(a string, b string) string {
+	exists := make(map[rune]bool)
+	for _, value := range a {
+		exists[value] = true
+	}
+	for _, value := range b {
+		exists[value] = true
+	}
+
+	retVal := ""
+	for key, val := range exists {
+		if val {
+			retVal += string(key)
+		}
+	}
+	return retVal
+}
+
+// Return a \not \in b (a should be larger than b)
+func stringIntersection(a string, b string) string {
+	exists := make(map[rune]bool)
+	for _, value := range a {
+		exists[value] = true
+	}
+	for _, value := range b {
+		exists[value] = false
+	}
+	retVal := ""
+	for key, val := range exists {
+		if val {
+			retVal += string(key)
+		}
+	}
+	return retVal
+}
+
 // Check if the pos-th bit is set to 1
 func hasBitSet(n int, pos int) bool {
 	val := n & (1 << pos)
