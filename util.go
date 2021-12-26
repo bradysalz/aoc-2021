@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 // Files error out a lot, so make an error handler warpper
@@ -193,4 +194,15 @@ func getMaxValueAndIndex(arr []int) (int, int) {
 		}
 	}
 	return maxValue, maxIdx
+}
+
+func Reverse(s string) string {
+	size := len(s)
+	buf := make([]byte, size)
+	for start := 0; start < size; {
+		r, n := utf8.DecodeRuneInString(s[start:])
+		start += n
+		utf8.EncodeRune(buf[size-start:], r)
+	}
+	return string(buf)
 }
