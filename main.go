@@ -32,6 +32,8 @@ func main() {
 	// dayThirteenPartTwo()
 	// fmt.Println("Day 14 Part 1:", dayFourteenPartOne())
 	// fmt.Println("Day 14 Part 2:", dayFourteenPartTwo())
-	fmt.Println("Day 15 Part 1:", dayFifteenPartOne(false))
-	fmt.Println("Day 15 Part 2:", dayFifteenPartOne(true))
+	// fmt.Println("Day 15 Part 1:", dayFifteenPartOne(false))
+	// fmt.Println("Day 15 Part 2:", dayFifteenPartOne(true))
+	fmt.Println("Day 16 Part 1:", daySixteenPartOne(false))
+	fmt.Println("Day 16 Part 2:", daySixteenPartOne(true))
 }
